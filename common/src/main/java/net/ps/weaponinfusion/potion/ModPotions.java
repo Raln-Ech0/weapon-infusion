@@ -2,9 +2,10 @@ package net.ps.weaponinfusion.potion;
 
 import net.blay09.mods.balm.core.BalmRegistrar;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionIds;
 import net.minecraft.world.item.alchemy.Potions;
 import org.jspecify.annotations.NonNull;
 
@@ -78,216 +79,143 @@ public class ModPotions {
     public static Holder<Potion> oozing;
     public static Holder<Potion> infested;
 
-    private static final String NIGHT_VISION_ID = "night_vision";
-    private static final String INVISIBILITY_ID = "invisibility";
-    private static final String LEAPING_ID = "leaping";
-    private static final String FIRE_RESISTANCE_ID = "fire_resistance";
-
-    private static final String SWIFTNESS_ID = "swiftness";
-    private static final String SLOWNESS_ID = "slowness";
-    private static final String TURTLE_MASTER_ID = "turtle_master";
-    private static final String WATER_BREATHING_ID = "water_breathing";
-
-    private static final String HEALING_ID = "healing";
-    private static final String HARMING_ID = "harming";
-    private static final String POISON_ID = "poison";
-    private static final String REGENERATION_ID = "regeneration";
-
-    private static final String STRENGTH_ID = "strength";
-    private static final String WEAKNESS_ID = "weakness";
-    private static final String LUCK_ID = "luck";
-    private static final String SLOW_FALLING_ID = "slow_falling";
-
-    private static final String WIND_CHARGED_ID = "wind_charged";
-    private static final String WEAVING_ID = "weaving";
-    private static final String OOZING_ID = "oozing";
-    private static final String INFESTED_ID = "infested";
-
     public static void initialize(BalmRegistrar.@NonNull Scoped<Potion> potions) {
-        nightVision = potions.register(NIGHT_VISION_ID,
-                _ -> new Potion(NIGHT_VISION_ID, new MobEffectInstance(MobEffects.NIGHT_VISION, 3600 / 2)));
-        longNightVision = potions.register(longEffect(NIGHT_VISION_ID),
-                _ -> new Potion(NIGHT_VISION_ID, new MobEffectInstance(MobEffects.NIGHT_VISION, 9600 / 2)));
+        nightVision = register(potions, Potions.NIGHT_VISION, PotionIds.NIGHT_VISION);
+        longNightVision = register(potions, Potions.LONG_NIGHT_VISION, PotionIds.LONG_NIGHT_VISION);
 
-        invisibility = potions.register("invisibility",
-                _ -> new Potion("invisibility", new MobEffectInstance(MobEffects.INVISIBILITY, 3600 / 2)));
-        longInvisibility = potions.register("long_invisibility",
-                _ -> new Potion("invisibility", new MobEffectInstance(MobEffects.INVISIBILITY, 9600 / 2)));
+        invisibility = register(potions, Potions.INVISIBILITY, PotionIds.INVISIBILITY);
+        longInvisibility = register(potions, Potions.LONG_INVISIBILITY, PotionIds.LONG_INVISIBILITY);
 
-        leaping = potions.register(LEAPING_ID,
-                _ -> new Potion(LEAPING_ID, new MobEffectInstance(MobEffects.JUMP_BOOST, 3600 / 2)));
-        longLeaping = potions.register(longEffect(LEAPING_ID),
-                _ -> new Potion(LEAPING_ID, new MobEffectInstance(MobEffects.JUMP_BOOST, 9600 / 2)));
-        strongLeaping = potions.register(strongEffect(LEAPING_ID),
-                _ -> new Potion(LEAPING_ID, new MobEffectInstance(MobEffects.JUMP_BOOST, 1800 / 2, 1)));
+        leaping = register(potions, Potions.LEAPING, PotionIds.LEAPING);
+        longLeaping = register(potions, Potions.LONG_LEAPING, PotionIds.LONG_LEAPING);
+        strongLeaping = register(potions, Potions.STRONG_LEAPING, PotionIds.STRONG_LEAPING);
 
-        fireResistance = potions.register(FIRE_RESISTANCE_ID,
-                _ -> new Potion(FIRE_RESISTANCE_ID, new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 3600 / 2)));
-        longFireResistance = potions.register(longEffect(FIRE_RESISTANCE_ID),
-                _ -> new Potion(FIRE_RESISTANCE_ID, new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 9600 / 2)));
+        fireResistance = register(potions, Potions.FIRE_RESISTANCE, PotionIds.FIRE_RESISTANCE);
+        longFireResistance = register(potions, Potions.LONG_FIRE_RESISTANCE, PotionIds.LONG_FIRE_RESISTANCE);
 
-        swiftness = potions.register(SWIFTNESS_ID,
-                _ -> new Potion(SWIFTNESS_ID, new MobEffectInstance(MobEffects.SPEED, 3600 / 2)));
-        longSwiftness = potions.register(longEffect(SWIFTNESS_ID),
-                _ -> new Potion(SWIFTNESS_ID, new MobEffectInstance(MobEffects.SPEED, 9600 / 2)));
-        strongSwiftness = potions.register(strongEffect(SWIFTNESS_ID),
-                _ -> new Potion(SWIFTNESS_ID, new MobEffectInstance(MobEffects.SPEED, 1800 / 2, 1)));
+        swiftness = register(potions, Potions.SWIFTNESS, PotionIds.SWIFTNESS);
+        longSwiftness = register(potions, Potions.LONG_SWIFTNESS, PotionIds.LONG_SWIFTNESS);
+        strongSwiftness = register(potions, Potions.STRONG_SWIFTNESS, PotionIds.STRONG_SWIFTNESS);
 
-        slowness = potions.register(SLOWNESS_ID,
-                _ -> new Potion(SLOWNESS_ID, new MobEffectInstance(MobEffects.SLOWNESS, 1800 / 2)));
-        longSlowness = potions.register(longEffect(SLOWNESS_ID),
-                _ -> new Potion(SLOWNESS_ID, new MobEffectInstance(MobEffects.SLOWNESS, 4800 / 2)));
-        strongSlowness = potions.register(strongEffect(SLOWNESS_ID),
-                _ -> new Potion(SLOWNESS_ID, new MobEffectInstance(MobEffects.SLOWNESS, 400 / 2, 3)));
+        slowness = register(potions, Potions.SLOWNESS, PotionIds.SLOWNESS);
+        longSlowness = register(potions, Potions.LONG_SLOWNESS, PotionIds.LONG_SLOWNESS);
+        strongSlowness = register(potions, Potions.STRONG_SLOWNESS, PotionIds.STRONG_SLOWNESS);
 
-        turtleMaster = potions.register(TURTLE_MASTER_ID,
-                _ -> new Potion(TURTLE_MASTER_ID, new MobEffectInstance(MobEffects.SLOWNESS, 400 / 2, 3),
-                        new MobEffectInstance(MobEffects.RESISTANCE, 400 / 2, 2)));
-        longTurtleMaster = potions.register(longEffect(TURTLE_MASTER_ID),
-                _ -> new Potion(TURTLE_MASTER_ID, new MobEffectInstance(MobEffects.SLOWNESS, 800 / 2, 3),
-                        new MobEffectInstance(MobEffects.RESISTANCE, 800 / 2, 2)));
-        strongTurtleMaster = potions.register(strongEffect(TURTLE_MASTER_ID),
-                _ -> new Potion(TURTLE_MASTER_ID, new MobEffectInstance(MobEffects.SLOWNESS, 400 / 2, 5),
-                        new MobEffectInstance(MobEffects.RESISTANCE, 400 / 2, 3)));
+        turtleMaster = register(potions, Potions.TURTLE_MASTER, PotionIds.TURTLE_MASTER);
+        longTurtleMaster = register(potions, Potions.LONG_TURTLE_MASTER, PotionIds.LONG_TURTLE_MASTER);
+        strongTurtleMaster = register(potions, Potions.STRONG_TURTLE_MASTER, PotionIds.STRONG_TURTLE_MASTER);
 
-        waterBreathing = potions.register(WATER_BREATHING_ID,
-                _ -> new Potion(WATER_BREATHING_ID, new MobEffectInstance(MobEffects.WATER_BREATHING, 3600 / 2)));
-        longWaterBreathing = potions.register(longEffect(WATER_BREATHING_ID),
-                _ -> new Potion(WATER_BREATHING_ID, new MobEffectInstance(MobEffects.WATER_BREATHING, 9600 / 2)));
+        waterBreathing = register(potions, Potions.WATER_BREATHING, PotionIds.WATER_BREATHING);
+        longWaterBreathing = register(potions, Potions.LONG_WATER_BREATHING, PotionIds.LONG_WATER_BREATHING);
+        
+        healing = register(potions, Potions.HEALING, PotionIds.HEALING);
+        strongHealing = register(potions, Potions.STRONG_HEALING, PotionIds.STRONG_HEALING);
 
-        healing = potions.register(HEALING_ID,
-                _ -> new Potion(HEALING_ID, new MobEffectInstance(MobEffects.INSTANT_HEALTH, 1)));
-        strongHealing = potions.register(strongEffect(HEALING_ID),
-                _ -> new Potion(HEALING_ID, new MobEffectInstance(MobEffects.INSTANT_HEALTH, 1, 1)));
+        harming = register(potions, Potions.HARMING, PotionIds.HARMING);
+        strongHarming = register(potions, Potions.STRONG_HARMING, PotionIds.STRONG_HARMING);
 
-        harming = potions.register(HARMING_ID,
-                _ -> new Potion(HARMING_ID, new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 1)));
-        strongHarming = potions.register(strongEffect(HARMING_ID),
-                _ -> new Potion(HARMING_ID, new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 1, 1)));
+        poison = register(potions, Potions.POISON, PotionIds.POISON);
+        longPoison = register(potions, Potions.LONG_POISON, PotionIds.LONG_POISON);
+        strongPoison = register(potions, Potions.STRONG_POISON, PotionIds.STRONG_POISON);
 
-        poison = potions.register(POISON_ID,
-                _ -> new Potion(POISON_ID, new MobEffectInstance(MobEffects.POISON, 900 / 2)));
-        longPoison = potions.register(longEffect(POISON_ID),
-                _ -> new Potion(POISON_ID, new MobEffectInstance(MobEffects.POISON, 1800 / 2)));
-        strongPoison = potions.register(strongEffect(POISON_ID),
-                _ -> new Potion(POISON_ID, new MobEffectInstance(MobEffects.POISON, 432 / 2, 1)));
+        regeneration = register(potions, Potions.REGENERATION, PotionIds.REGENERATION);
+        longRegeneration = register(potions, Potions.LONG_REGENERATION, PotionIds.LONG_REGENERATION);
+        strongRegeneration = register(potions, Potions.STRONG_REGENERATION, PotionIds.STRONG_REGENERATION);
 
-        regeneration = potions.register(REGENERATION_ID,
-                _ -> new Potion(REGENERATION_ID, new MobEffectInstance(MobEffects.REGENERATION, 900 / 2)));
-        longRegeneration = potions.register(longEffect(REGENERATION_ID),
-                _ -> new Potion(REGENERATION_ID, new MobEffectInstance(MobEffects.REGENERATION, 1800 / 2)));
-        strongRegeneration = potions.register(strongEffect(REGENERATION_ID),
-                _ -> new Potion(REGENERATION_ID, new MobEffectInstance(MobEffects.REGENERATION, 450 / 2, 1)));
+        strength = register(potions, Potions.STRENGTH, PotionIds.STRENGTH);
+        longStrength = register(potions, Potions.LONG_STRENGTH, PotionIds.LONG_STRENGTH);
+        strongStrength = register(potions, Potions.STRONG_STRENGTH, PotionIds.STRONG_STRENGTH);
 
-        strength = potions.register(STRENGTH_ID,
-                _ -> new Potion(STRENGTH_ID, new MobEffectInstance(MobEffects.STRENGTH, 3600 / 2)));
-        longStrength = potions.register(longEffect(STRENGTH_ID),
-                _ -> new Potion(STRENGTH_ID, new MobEffectInstance(MobEffects.STRENGTH, 9600 / 2)));
-        strongStrength = potions.register(strongEffect(STRENGTH_ID),
-                _ -> new Potion(STRENGTH_ID, new MobEffectInstance(MobEffects.STRENGTH, 1800 / 2, 1)));
+        weakness = register(potions, Potions.WEAKNESS, PotionIds.WEAKNESS);
+        longWeakness = register(potions, Potions.LONG_WEAKNESS, PotionIds.LONG_WEAKNESS);
 
-        weakness = potions.register(WEAKNESS_ID,
-                _ -> new Potion(WEAKNESS_ID, new MobEffectInstance(MobEffects.WEAKNESS, 1800 / 2)));
-        longWeakness = potions.register(longEffect(WEAKNESS_ID),
-                _ -> new Potion(WEAKNESS_ID, new MobEffectInstance(MobEffects.WEAKNESS, 4800 / 2)));
+        luck = register(potions, Potions.LUCK, PotionIds.LUCK);
 
-        luck = potions.register(LUCK_ID,
-                _ -> new Potion(LUCK_ID, new MobEffectInstance(MobEffects.LUCK, 6000 / 2)));
+        slowFalling = register(potions, Potions.SLOW_FALLING, PotionIds.SLOW_FALLING);
+        longSlowFalling = register(potions, Potions.LONG_SLOW_FALLING, PotionIds.LONG_SLOW_FALLING);
 
-        slowFalling = potions.register(SLOW_FALLING_ID,
-                _ -> new Potion(SLOW_FALLING_ID, new MobEffectInstance(MobEffects.SLOW_FALLING, 1800 / 2)));
-        longSlowFalling = potions.register(longEffect(SLOW_FALLING_ID),
-                _ -> new Potion(SLOW_FALLING_ID, new MobEffectInstance(MobEffects.SLOW_FALLING, 4800 / 2)));
+        windCharged = register(potions, Potions.WIND_CHARGED, PotionIds.WIND_CHARGED);
+        weaving = register(potions, Potions.WEAVING, PotionIds.WEAVING);
+        oozing = register(potions, Potions.OOZING, PotionIds.OOZING);
+        infested = register(potions, Potions.INFESTED, PotionIds.INFESTED);
 
-        windCharged = potions.register(WIND_CHARGED_ID,
-                _ -> new Potion(WIND_CHARGED_ID, new MobEffectInstance(MobEffects.WIND_CHARGED, 3600 / 2)));
-        weaving = potions.register(WEAVING_ID,
-                _ -> new Potion(WEAVING_ID, new MobEffectInstance(MobEffects.WEAVING, 3600 / 2)));
-        oozing = potions.register(OOZING_ID,
-                _ -> new Potion(OOZING_ID, new MobEffectInstance(MobEffects.OOZING, 3600 / 2)));
-        infested = potions.register(INFESTED_ID,
-                _ -> new Potion(INFESTED_ID, new MobEffectInstance(MobEffects.INFESTED, 3600 / 2)));
+        POTION_MAPPING.put(Potions.NIGHT_VISION, ModPotions.nightVision);
+        POTION_MAPPING.put(Potions.LONG_NIGHT_VISION, ModPotions.longNightVision);
 
-        POTION_MAPPING.put(ModPotions.nightVision, Potions.NIGHT_VISION);
-        POTION_MAPPING.put(ModPotions.longNightVision, Potions.LONG_NIGHT_VISION);
+        POTION_MAPPING.put(Potions.INVISIBILITY, ModPotions.invisibility);
+        POTION_MAPPING.put(Potions.LONG_INVISIBILITY, ModPotions.longInvisibility);
 
-        POTION_MAPPING.put(ModPotions.invisibility, Potions.INVISIBILITY);
-        POTION_MAPPING.put(ModPotions.longInvisibility, Potions.LONG_INVISIBILITY);
+        POTION_MAPPING.put(Potions.LEAPING, ModPotions.leaping);
+        POTION_MAPPING.put(Potions.LONG_LEAPING, ModPotions.longLeaping);
+        POTION_MAPPING.put(Potions.STRONG_LEAPING, ModPotions.strongLeaping);
 
-        POTION_MAPPING.put(ModPotions.leaping, Potions.LEAPING);
-        POTION_MAPPING.put(ModPotions.longLeaping, Potions.LONG_LEAPING);
-        POTION_MAPPING.put(ModPotions.strongLeaping, Potions.STRONG_LEAPING);
+        POTION_MAPPING.put(Potions.FIRE_RESISTANCE, ModPotions.fireResistance);
+        POTION_MAPPING.put(Potions.LONG_FIRE_RESISTANCE, ModPotions.longFireResistance);
 
-        POTION_MAPPING.put(ModPotions.fireResistance, Potions.FIRE_RESISTANCE);
-        POTION_MAPPING.put(ModPotions.longFireResistance, Potions.LONG_FIRE_RESISTANCE);
+        POTION_MAPPING.put(Potions.SWIFTNESS, ModPotions.swiftness);
+        POTION_MAPPING.put(Potions.LONG_SWIFTNESS, ModPotions.longSwiftness);
+        POTION_MAPPING.put(Potions.STRONG_SWIFTNESS, ModPotions.strongSwiftness);
 
-        POTION_MAPPING.put(ModPotions.swiftness, Potions.SWIFTNESS);
-        POTION_MAPPING.put(ModPotions.longSwiftness, Potions.LONG_SWIFTNESS);
-        POTION_MAPPING.put(ModPotions.strongSwiftness, Potions.STRONG_SWIFTNESS);
+        POTION_MAPPING.put(Potions.SLOWNESS, ModPotions.slowness);
+        POTION_MAPPING.put(Potions.LONG_SLOWNESS, ModPotions.longSlowness);
+        POTION_MAPPING.put(Potions.STRONG_SLOWNESS, ModPotions.strongSlowness);
 
-        POTION_MAPPING.put(ModPotions.slowness, Potions.SLOWNESS);
-        POTION_MAPPING.put(ModPotions.longSlowness, Potions.LONG_SLOWNESS);
-        POTION_MAPPING.put(ModPotions.strongSlowness, Potions.STRONG_SLOWNESS);
+        POTION_MAPPING.put(Potions.TURTLE_MASTER, ModPotions.turtleMaster);
+        POTION_MAPPING.put(Potions.LONG_TURTLE_MASTER, ModPotions.longTurtleMaster);
+        POTION_MAPPING.put(Potions.STRONG_TURTLE_MASTER, ModPotions.strongTurtleMaster);
 
-        POTION_MAPPING.put(ModPotions.turtleMaster, Potions.TURTLE_MASTER);
-        POTION_MAPPING.put(ModPotions.longTurtleMaster, Potions.LONG_TURTLE_MASTER);
-        POTION_MAPPING.put(ModPotions.strongTurtleMaster, Potions.STRONG_TURTLE_MASTER);
+        POTION_MAPPING.put(Potions.WATER_BREATHING, ModPotions.waterBreathing);
+        POTION_MAPPING.put(Potions.LONG_WATER_BREATHING, ModPotions.longWaterBreathing);
 
-        POTION_MAPPING.put(ModPotions.waterBreathing, Potions.WATER_BREATHING);
-        POTION_MAPPING.put(ModPotions.longWaterBreathing, Potions.LONG_WATER_BREATHING);
+        POTION_MAPPING.put(Potions.HEALING, ModPotions.healing);
+        POTION_MAPPING.put(Potions.STRONG_HEALING, ModPotions.strongHealing);
 
-        POTION_MAPPING.put(ModPotions.healing, Potions.HEALING);
-        POTION_MAPPING.put(ModPotions.strongHealing, Potions.STRONG_HEALING);
+        POTION_MAPPING.put(Potions.HARMING, ModPotions.harming);
+        POTION_MAPPING.put(Potions.STRONG_HARMING, ModPotions.strongHarming);
 
-        POTION_MAPPING.put(ModPotions.harming, Potions.HARMING);
-        POTION_MAPPING.put(ModPotions.strongHarming, Potions.STRONG_HARMING);
+        POTION_MAPPING.put(Potions.POISON, ModPotions.poison);
+        POTION_MAPPING.put(Potions.LONG_POISON, ModPotions.longPoison);
+        POTION_MAPPING.put(Potions.STRONG_POISON, ModPotions.strongPoison);
 
-        POTION_MAPPING.put(ModPotions.poison, Potions.POISON);
-        POTION_MAPPING.put(ModPotions.longPoison, Potions.LONG_POISON);
-        POTION_MAPPING.put(ModPotions.strongPoison, Potions.STRONG_POISON);
+        POTION_MAPPING.put(Potions.REGENERATION, ModPotions.regeneration);
+        POTION_MAPPING.put(Potions.LONG_REGENERATION, ModPotions.longRegeneration);
+        POTION_MAPPING.put(Potions.STRONG_REGENERATION, ModPotions.strongRegeneration);
 
-        POTION_MAPPING.put(ModPotions.regeneration, Potions.REGENERATION);
-        POTION_MAPPING.put(ModPotions.longRegeneration, Potions.LONG_REGENERATION);
-        POTION_MAPPING.put(ModPotions.strongRegeneration, Potions.STRONG_REGENERATION);
+        POTION_MAPPING.put(Potions.STRENGTH, ModPotions.strength);
+        POTION_MAPPING.put(Potions.STRONG_STRENGTH, ModPotions.strongStrength);
+        POTION_MAPPING.put(Potions.LONG_STRENGTH, ModPotions.longStrength);
 
-        POTION_MAPPING.put(ModPotions.strength, Potions.STRENGTH);
-        POTION_MAPPING.put(ModPotions.strongStrength, Potions.STRONG_STRENGTH);
-        POTION_MAPPING.put(ModPotions.longStrength, Potions.LONG_STRENGTH);
+        POTION_MAPPING.put(Potions.WEAKNESS, ModPotions.weakness);
+        POTION_MAPPING.put(Potions.LONG_WEAKNESS, ModPotions.longWeakness);
 
-        POTION_MAPPING.put(ModPotions.weakness, Potions.WEAKNESS);
-        POTION_MAPPING.put(ModPotions.longWeakness, Potions.LONG_WEAKNESS);
+        POTION_MAPPING.put(Potions.LUCK, ModPotions.luck);
 
-        POTION_MAPPING.put(ModPotions.luck, Potions.LUCK);
+        POTION_MAPPING.put(Potions.SLOW_FALLING, ModPotions.slowFalling);
+        POTION_MAPPING.put(Potions.LONG_SLOW_FALLING, ModPotions.longSlowFalling);
 
-        POTION_MAPPING.put(ModPotions.slowFalling, Potions.SLOW_FALLING);
-        POTION_MAPPING.put(ModPotions.longSlowFalling, Potions.LONG_SLOW_FALLING);
-
-        POTION_MAPPING.put(ModPotions.windCharged, Potions.WIND_CHARGED);
-        POTION_MAPPING.put(ModPotions.weaving, Potions.WEAVING);
-        POTION_MAPPING.put(ModPotions.oozing, Potions.OOZING);
-        POTION_MAPPING.put(ModPotions.infested, Potions.INFESTED);
+        POTION_MAPPING.put(Potions.WIND_CHARGED, ModPotions.windCharged);
+        POTION_MAPPING.put(Potions.WEAVING, ModPotions.weaving);
+        POTION_MAPPING.put(Potions.OOZING, ModPotions.oozing);
+        POTION_MAPPING.put(Potions.INFESTED, ModPotions.infested);
     }
 
-    private static Holder<Potion> registerPotion(BalmRegistrar.Scoped<Potion> potions, Holder<Potion> copy) {
+    private static Holder<Potion> register(BalmRegistrar.Scoped<Potion> potions, Holder<Potion> copy, ResourceKey<Potion> id) {
         List<MobEffectInstance> effects = copy.value().getEffects().stream()
                 .map(mobEffectInstance ->
-                        new MobEffectInstance(mobEffectInstance.getEffect(), mobEffectInstance.getDuration() / 2))
+                        new MobEffectInstance(
+                                mobEffectInstance.getEffect(),
+                                mobEffectInstance.getDuration() / 2,
+                                mobEffectInstance.getAmplifier()
+                        )
+                )
                 .toList();
 
-        return potions.register(copy.value().name(),
+        return potions.register(id.identifier().getPath(),
                 _ -> new Potion(
-                        copy.value().name().replaceFirst("^long_", "").replaceFirst("^strong_", ""),
+                        copy.value().name(),
                         effects.toArray(MobEffectInstance[]::new)
                 )
         );
-    }
-
-    private static String longEffect(String id) {
-        return "long_" + id;
-    }
-
-    private static String strongEffect(String id) {
-        return "strong_" + id;
     }
 
     public static Map<Holder<Potion>, Holder<Potion>> getPotionMapping() {

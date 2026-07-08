@@ -54,9 +54,7 @@ public class ModEvents {
             for (MobEffectInstance effect : contents.getAllEffects()) {
                 target.addEffect(new MobEffectInstance(effect));
             }
-            if (!player.isCreative()) {
-                weapon.set(ModDataComponents.charges.value(), charges - 1);
-            }
+            if (!player.isCreative()) weapon.set(ModDataComponents.charges.value(), charges - 1);
         }
     }
 
