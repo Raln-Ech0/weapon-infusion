@@ -5,9 +5,16 @@ import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.Potions;
+import net.ps.weaponinfusion.WeaponInfusion;
 import org.jspecify.annotations.NonNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ModPotions {
+    public static final Map<Holder<Potion>, Holder<Potion>> POTION_MAPPING = new HashMap<>();
+
     public static Holder<Potion> nightVision;
     public static Holder<Potion> longNightVision;
 
@@ -171,5 +178,64 @@ public class ModPotions {
                 _ -> new Potion("oozing", new MobEffectInstance(MobEffects.OOZING, 3600 / 2)));
         infested = potions.register("infested",
                 _ -> new Potion("infested", new MobEffectInstance(MobEffects.INFESTED, 3600 / 2)));
+
+        POTION_MAPPING.put(ModPotions.nightVision, Potions.NIGHT_VISION);
+        POTION_MAPPING.put(ModPotions.longNightVision, Potions.LONG_NIGHT_VISION);
+
+        POTION_MAPPING.put(ModPotions.invisibility, Potions.INVISIBILITY);
+        POTION_MAPPING.put(ModPotions.longInvisibility, Potions.LONG_INVISIBILITY);
+
+        POTION_MAPPING.put(ModPotions.leaping, Potions.LEAPING);
+        POTION_MAPPING.put(ModPotions.longLeaping, Potions.LONG_LEAPING);
+        POTION_MAPPING.put(ModPotions.strongLeaping, Potions.STRONG_LEAPING);
+
+        POTION_MAPPING.put(ModPotions.fireResistance, Potions.FIRE_RESISTANCE);
+        POTION_MAPPING.put(ModPotions.longFireResistance, Potions.LONG_FIRE_RESISTANCE);
+
+        POTION_MAPPING.put(ModPotions.swiftness, Potions.SWIFTNESS);
+        POTION_MAPPING.put(ModPotions.longSwiftness, Potions.LONG_SWIFTNESS);
+        POTION_MAPPING.put(ModPotions.strongSwiftness, Potions.STRONG_SWIFTNESS);
+
+        POTION_MAPPING.put(ModPotions.slowness, Potions.SLOWNESS);
+        POTION_MAPPING.put(ModPotions.longSlowness, Potions.LONG_SLOWNESS);
+        POTION_MAPPING.put(ModPotions.strongSlowness, Potions.STRONG_SLOWNESS);
+
+        POTION_MAPPING.put(ModPotions.turtleMaster, Potions.TURTLE_MASTER);
+        POTION_MAPPING.put(ModPotions.longTurtleMaster, Potions.LONG_TURTLE_MASTER);
+        POTION_MAPPING.put(ModPotions.strongTurtleMaster, Potions.STRONG_TURTLE_MASTER);
+
+        POTION_MAPPING.put(ModPotions.waterBreathing, Potions.WATER_BREATHING);
+        POTION_MAPPING.put(ModPotions.longWaterBreathing, Potions.LONG_WATER_BREATHING);
+
+        POTION_MAPPING.put(ModPotions.healing, Potions.HEALING);
+        POTION_MAPPING.put(ModPotions.strongHealing, Potions.STRONG_HEALING);
+
+        POTION_MAPPING.put(ModPotions.harming, Potions.HARMING);
+        POTION_MAPPING.put(ModPotions.strongHarming, Potions.STRONG_HARMING);
+
+        POTION_MAPPING.put(ModPotions.poison, Potions.POISON);
+        POTION_MAPPING.put(ModPotions.longPoison, Potions.LONG_POISON);
+        POTION_MAPPING.put(ModPotions.strongPoison, Potions.STRONG_POISON);
+
+        POTION_MAPPING.put(ModPotions.regeneration, Potions.REGENERATION);
+        POTION_MAPPING.put(ModPotions.longRegeneration, Potions.LONG_REGENERATION);
+        POTION_MAPPING.put(ModPotions.strongRegeneration, Potions.STRONG_REGENERATION);
+
+        POTION_MAPPING.put(ModPotions.strength, Potions.STRENGTH);
+        POTION_MAPPING.put(ModPotions.strongStrength, Potions.STRONG_STRENGTH);
+        POTION_MAPPING.put(ModPotions.longStrength, Potions.LONG_STRENGTH);
+
+        POTION_MAPPING.put(ModPotions.weakness, Potions.WEAKNESS);
+        POTION_MAPPING.put(ModPotions.longWeakness, Potions.LONG_WEAKNESS);
+
+        POTION_MAPPING.put(ModPotions.luck, Potions.LUCK);
+
+        POTION_MAPPING.put(ModPotions.slowFalling, Potions.SLOW_FALLING);
+        POTION_MAPPING.put(ModPotions.longSlowFalling, Potions.LONG_SLOW_FALLING);
+
+        POTION_MAPPING.put(ModPotions.windCharged, Potions.WIND_CHARGED);
+        POTION_MAPPING.put(ModPotions.weaving, Potions.WEAVING);
+        POTION_MAPPING.put(ModPotions.oozing, Potions.OOZING);
+        POTION_MAPPING.put(ModPotions.infested, Potions.INFESTED);
     }
 }

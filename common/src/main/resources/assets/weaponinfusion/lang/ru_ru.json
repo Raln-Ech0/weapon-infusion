@@ -27,5 +27,5 @@
   "item.weaponinfusion.tincture.effect.weaving": "Настойка плетения",
   "item.weaponinfusion.tincture.effect.wind_charged": "Настойка ветрового заряда",
 
-  "creativetab.weaponinfusion.tincture_items": "Настойки"
+  "itemGroup.weaponinfusion.tincture_items": "Настойки"
 }

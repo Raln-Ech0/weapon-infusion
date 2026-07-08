@@ -32,7 +32,7 @@ public class ModItems {
 
     public static void initialize(@NonNull BalmCreativeModeTabRegistrar creativeModeTabs) {
         creativeModeTabs.register(WeaponInfusion.MOD_ID, builder ->
-                builder.title(Component.translatable(id(WeaponInfusion.MOD_ID).toLanguageKey("itemGroup")))
+                builder.title(Component.translatable(id("tincture_items").toLanguageKey("itemGroup")))
                         .icon(() -> {
                             ItemStack stack = tincture.createStack();
                             stack.set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.POISON));

@@ -28,7 +28,5 @@ public class WeaponInfusion {
         registrars.dataComponentTypes(ModDataComponents::initialize);
 
         ModEvents.initialize();
-
-        WeaponInfusion.logger.debug("modifyDefaultComponents...");
     }
 }
