@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 import net.ps.weaponinfusion.item.ModItems;
 
 public class WeaponInfusion {
+    private WeaponInfusion() {
+        /* This utility class should not be instantiated */
+    }
 
     public static final Logger logger = LoggerFactory.getLogger(WeaponInfusion.class);
 

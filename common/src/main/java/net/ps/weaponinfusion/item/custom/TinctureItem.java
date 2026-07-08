@@ -20,7 +20,7 @@ public class TinctureItem extends PotionItem {
         ItemStack stack = super.getDefaultInstance();
         PotionContents contents = Objects.requireNonNull(stack.get(DataComponents.POTION_CONTENTS));
         contents.potion().ifPresent(potion -> {
-            potion = ModPotions.POTION_MAPPING.getOrDefault(potion, potion);
+            potion = ModPotions.getPotionMapping().getOrDefault(potion, potion);
             stack.set(DataComponents.POTION_CONTENTS, new PotionContents(potion));
         });
         return stack;

@@ -13,7 +13,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ModDefaultComponents {
-    private ModDefaultComponents() {}
+    private ModDefaultComponents() {
+        /* This utility class should not be instantiated */
+    }
 
     public static void initialize() {
         DefaultItemComponentEvents.MODIFY.register(context -> {

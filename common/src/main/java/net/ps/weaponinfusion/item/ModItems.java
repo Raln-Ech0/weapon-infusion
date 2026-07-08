@@ -19,7 +19,9 @@ import org.jspecify.annotations.NonNull;
 import static net.ps.weaponinfusion.WeaponInfusion.id;
 
 public class ModItems {
-    private ModItems() {}
+    private ModItems() {
+        /* This utility class should not be instantiated */
+    }
 
     public static DeferredItem tincture;
 
@@ -38,20 +40,18 @@ public class ModItems {
                             stack.set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.POISON));
                             return stack;
                         })
-                        .displayItems((displayParameters, output) -> {
-                            generatePotionEffectTypes(displayParameters, output, tincture.asItem());
-                        })
+                        .displayItems((displayParameters, output) ->
+                                generatePotionEffectTypes(displayParameters, output, tincture.asItem()))
         );
     }
 
     private static void generatePotionEffectTypes(CreativeModeTab.ItemDisplayParameters displayParameters, CreativeModeTab.Output output, Item item) {
-        displayParameters.holders().lookup(Registries.POTION).ifPresent(potions -> {
-            potions.listElements()
-                    .filter(potion -> potion.key().identifier().getNamespace().equals(WeaponInfusion.MOD_ID)
-                            || potion.value().getEffects().toArray().length == 0)
-                    .filter(potion -> potion.value().isEnabled(displayParameters.enabledFeatures()))
-                    .map(potion -> PotionContents.createItemStack(item, potion))
-                    .forEach(output::accept);
-        });
+        displayParameters.holders().lookup(Registries.POTION).ifPresent(potions ->
+                potions.listElements()
+                        .filter(potion -> potion.key().identifier().getNamespace().equals(WeaponInfusion.MOD_ID)
+                                || potion.value().getEffects().toArray().length == 0)
+                        .filter(potion -> potion.value().isEnabled(displayParameters.enabledFeatures()))
+                        .map(potion -> PotionContents.createItemStack(item, potion))
+                        .forEach(output::accept));
     }
 }

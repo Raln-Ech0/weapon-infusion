@@ -11,6 +11,10 @@ import net.ps.weaponinfusion.data.ModDataComponents;
 
 @EventBusSubscriber(modid = WeaponInfusion.MOD_ID)
 public class ModDefaultComponents {
+    private ModDefaultComponents() {
+        /* This utility class should not be instantiated */
+    }
+
     @SubscribeEvent
     public static void modifyDefaultComponents(ModifyDefaultComponentsEvent event) {
         event.modifyMatching(

@@ -7,7 +7,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
@@ -18,12 +17,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static io.vavr.API.*;
-import static io.vavr.API.$;
-import static io.vavr.API.Case;
-
 public class ModEvents {
-    private ModEvents() {}
+    private ModEvents() {
+        /* This utility class should not be instantiated */
+    }
 
     public static void initialize() {
         PlayerCallback.Attack.Before.EVENT.register((player, target) -> {
@@ -45,40 +42,7 @@ public class ModEvents {
 
                 PotionContents tinctureContents = Objects.requireNonNull(tincture.get(DataComponents.POTION_CONTENTS));
 
-                tinctureContents.potion().ifPresent(p -> {
-                    int duration = switch(weapon) {
-                        case ItemStack v when v.is(ItemTags.SWORDS) -> 60;
-                        case ItemStack v when v.is(ItemTags.AXES) -> 100;
-                        case ItemStack v when v.is(ItemTags.MACE_ENCHANTABLE) -> 120;
-                        case ItemStack v when v.is(ItemTags.TRIDENT_ENCHANTABLE) -> 80;
-
-                        case ItemStack v when v.is(ItemTags.SPEARS) -> switch (weapon) {
-                            case ItemStack i when i.is(Items.DIAMOND_SPEAR) -> 70;
-                            case ItemStack i when i.is(Items.STONE_SPEAR) -> 50;
-                            case ItemStack i when i.is(Items.GOLDEN_SPEAR) -> 60;
-                            case ItemStack i when i.is(Items.NETHERITE_SPEAR) -> 80;
-                            case ItemStack i when i.is(Items.WOODEN_SPEAR) -> 40;
-                            case ItemStack i when i.is(Items.IRON_SPEAR) -> 60;
-                            case ItemStack i when i.is(Items.COPPER_SWORD) -> 60;
-
-                            default -> throw new IllegalStateException("Unexpected value: " + weapon);
-                        };
-
-                        default -> throw new IllegalStateException("Unexpected value: " + weapon);
-                    };
-
-                    List<MobEffectInstance> allEffects = p.value().getEffects().stream()
-                            .map(effect -> new MobEffectInstance(
-                                    effect.getEffect(),
-                                    effect.getEffect().value().isInstantaneous() ? effect.getDuration() : duration,
-                                    effect.getAmplifier()))
-                            .toList();
-
-                    PotionContents contents = new PotionContents(Optional.empty(),
-                            tinctureContents.customColor(), allEffects, tinctureContents.customName());
-
-                    weapon.set(DataComponents.POTION_CONTENTS, contents);
-                });
+                modifyDuration(tinctureContents, weapon);
 
                 if (!player.isCreative()) tincture.setCount(tincture.count() - 1);
                 weapon.set(ModDataComponents.charges.value(), 12);
@@ -108,5 +72,43 @@ public class ModEvents {
         }
 
         return tincture;
+    }
+
+    private static void modifyDuration(PotionContents initialContents, ItemStack weapon)  {
+        initialContents.potion().ifPresent(p -> {
+            int duration = switch(weapon) {
+                case ItemStack v when v.is(ItemTags.SWORDS) -> 60;
+                case ItemStack v when v.is(ItemTags.AXES) -> 100;
+                case ItemStack v when v.is(ItemTags.MACE_ENCHANTABLE) -> 120;
+                case ItemStack v when v.is(ItemTags.TRIDENT_ENCHANTABLE) -> 80;
+
+                case ItemStack v when v.is(ItemTags.SPEARS) -> switch (weapon) {
+                    case ItemStack i when i.is(Items.DIAMOND_SPEAR) -> 70;
+                    case ItemStack i when i.is(Items.STONE_SPEAR) -> 50;
+                    case ItemStack i when i.is(Items.GOLDEN_SPEAR) -> 60;
+                    case ItemStack i when i.is(Items.NETHERITE_SPEAR) -> 80;
+                    case ItemStack i when i.is(Items.WOODEN_SPEAR) -> 40;
+                    case ItemStack i when i.is(Items.IRON_SPEAR) -> 60;
+                    case ItemStack i when i.is(Items.COPPER_SWORD) -> 60;
+
+                    default -> throw new IllegalStateException("Unexpected value: " + weapon);
+                };
+
+                default -> throw new IllegalStateException("Unexpected value: " + weapon);
+            };
+
+            List<MobEffectInstance> allEffects = p.value().getEffects().stream()
+                    .map(effect -> new MobEffectInstance(
+                            effect.getEffect(),
+                            effect.getEffect().value().isInstantaneous() ? effect.getDuration() : duration,
+                            effect.getAmplifier()))
+                    .toList();
+
+            PotionContents contents = new PotionContents(Optional.empty(),
+                    initialContents.customColor(), allEffects, initialContents.customName());
+
+            weapon.set(DataComponents.POTION_CONTENTS, contents);
+        });
+
     }
 }

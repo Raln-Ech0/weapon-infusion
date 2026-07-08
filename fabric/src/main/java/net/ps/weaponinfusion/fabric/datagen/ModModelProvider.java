@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.ps.weaponinfusion.item.ModItems;
+import org.jspecify.annotations.NonNull;
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricPackOutput output) {
@@ -12,9 +13,8 @@ public class ModModelProvider extends FabricModelProvider {
     }
 
     @Override
-    public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {
-
-    }
+    @SuppressWarnings("java:S1186")
+    public void generateBlockStateModels(@NonNull BlockModelGenerators blockModelGenerators) {}
 
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {

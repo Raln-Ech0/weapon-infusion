@@ -7,7 +7,9 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.codec.ByteBufCodecs;
 
 public class ModDataComponents {
-    private ModDataComponents() {}
+    private ModDataComponents() {
+        /* This utility class should not be instantiated */
+    }
 
     public static Holder<DataComponentType<Integer>> charges;
 
