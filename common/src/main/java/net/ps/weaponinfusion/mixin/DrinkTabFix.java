@@ -24,4 +24,5 @@ public abstract class DrinkTabFix {
                 potion -> !potion.key().identifier().getNamespace().equals(WeaponInfusion.MOD_ID)
         );
     }
+
 }
