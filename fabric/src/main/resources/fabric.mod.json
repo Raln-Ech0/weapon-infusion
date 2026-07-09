@@ -22,9 +22,6 @@
     "main": [
       "net.ps.weaponinfusion.fabric.FabricWeaponInfusion"
     ],
-    "client": [
-      "net.ps.weaponinfusion.fabric.client.FabricWeaponInfusionClient"
-    ],
     "fabric-datagen": [
       "net.ps.weaponinfusion.fabric.datagen.ModDataGenerator"
     ]
