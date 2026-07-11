@@ -13,6 +13,7 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.component.Consumables;
 import net.ps.weaponinfusion.WeaponInfusion;
+import net.ps.weaponinfusion.item.custom.SandPaperItem;
 import net.ps.weaponinfusion.item.custom.TinctureItem;
 import org.jspecify.annotations.NonNull;
 
@@ -24,12 +25,14 @@ public class ModItems {
     }
 
     public static DeferredItem tincture;
+    public static DeferredItem sandPaper;
 
     public static void initialize(@NonNull BalmItemRegistrar items) {
         tincture = items.register("tincture", TinctureItem::new, properties ->  properties
                 .component(DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER))
                 .component(DataComponents.CONSUMABLE, Consumables.defaultDrink().consumeSeconds(0.8F).build())
         ).asDeferredItem();
+        sandPaper = items.register("sand_paper", SandPaperItem::new).asDeferredItem();
     }
 
     public static void initialize(@NonNull BalmCreativeModeTabRegistrar creativeModeTabs) {
@@ -40,8 +43,10 @@ public class ModItems {
                             stack.set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.POISON));
                             return stack;
                         })
-                        .displayItems((displayParameters, output) ->
-                                generatePotionEffectTypes(displayParameters, output, tincture.asItem()))
+                        .displayItems((displayParameters, output) -> {
+                            generatePotionEffectTypes(displayParameters, output, tincture.asItem());
+                            output.accept(ModItems.sandPaper);
+                        })
         );
     }
 

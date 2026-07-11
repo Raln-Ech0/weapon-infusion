@@ -27,5 +27,9 @@
   "item.weaponinfusion.tincture.effect.weaving": "Настойка плетения",
   "item.weaponinfusion.tincture.effect.wind_charged": "Настойка ветрового заряда",
 
+  "item.weaponinfusion.sand_paper": "Наждачная бумага",
+  "tooltip.weaponinfusion.sand_paper.tooltip": "Удаляет все эффекты зелий и заряды с оружия. Очищает оружие для повторного использования.",
+
+
   "itemGroup.weaponinfusion.tincture_items": "Настойки"
 }

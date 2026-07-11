@@ -30,7 +30,7 @@ public class ModEvents {
     }
 
     public static void onAttack(Player player, Entity rawTarget) {
-        ItemStack weapon = player.getWeaponItem();
+        ItemStack weapon = Objects.requireNonNull(player.getWeaponItem());
 
         if (rawTarget instanceof LivingEntity target && weapon.has(DataComponents.WEAPON)) {
             Integer charges = Objects.requireNonNull(weapon.get(ModDataComponents.charges.value()));

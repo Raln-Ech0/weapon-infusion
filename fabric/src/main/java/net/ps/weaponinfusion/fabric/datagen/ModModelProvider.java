@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.model.ItemModelUtils;
+import net.minecraft.resources.Identifier;
 import net.ps.weaponinfusion.item.ModItems;
 import org.jspecify.annotations.NonNull;
 
@@ -19,5 +21,9 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
         itemModelGenerator.generatePotion(ModItems.tincture.asItem());
+        itemModelGenerator.itemModelOutput.accept(
+                ModItems.sandPaper.asItem(),
+                ItemModelUtils.plainModel(Identifier.withDefaultNamespace("item/paper"))
+        );
     }
 }

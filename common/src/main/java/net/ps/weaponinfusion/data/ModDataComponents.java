@@ -5,6 +5,7 @@ import net.blay09.mods.balm.core.component.BalmDataComponentTypeRegistrar;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.ps.weaponinfusion.item.custom.SandPaperItem;
 
 public class ModDataComponents {
     private ModDataComponents() {
@@ -12,8 +13,11 @@ public class ModDataComponents {
     }
 
     public static Holder<DataComponentType<Integer>> charges;
+    public static Holder<DataComponentType<SandPaperItem.SandPaperItemComponent>> sandPaperPolishing;
+
 
     public static void initialize(BalmDataComponentTypeRegistrar dataComponentTypes) {
         charges = dataComponentTypes.register("charges", Codec.INT, ByteBufCodecs.INT).asHolder();
-    }
+        sandPaperPolishing = dataComponentTypes.register("sand_paper_polishing", SandPaperItem.SandPaperItemComponent.CODEC, SandPaperItem.SandPaperItemComponent.STREAM_CODEC).asHolder();
+}
 }

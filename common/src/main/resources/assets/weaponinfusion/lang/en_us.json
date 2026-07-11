@@ -27,5 +27,8 @@
   "item.weaponinfusion.tincture.effect.weaving": "Tincture of Weaving",
   "item.weaponinfusion.tincture.effect.wind_charged": "Tincture of Wind Charging",
 
+  "item.weaponinfusion.sand_paper": "Sand Paper",
+  "tooltip.weaponinfusion.sand_paper.tooltip": "Removes all potion effects and charges from weapons. Cleans weapons for reuse.",
+
   "itemGroup.weaponinfusion.tincture_items": "Tinctures"
 }

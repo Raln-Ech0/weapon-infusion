@@ -199,7 +199,7 @@ public class ModPotions {
         POTION_MAPPING.put(Potions.INFESTED, ModPotions.infested);
     }
 
-    private static Holder<Potion> register(BalmRegistrar.Scoped<Potion> potions, Holder<Potion> copy, ResourceKey<Potion> id) {
+    private static @NonNull Holder<Potion> register(BalmRegistrar.Scoped<Potion> potions, Holder<Potion> copy, ResourceKey<Potion> id) {
         List<MobEffectInstance> effects = copy.value().getEffects().stream()
                 .map(mobEffectInstance ->
                         new MobEffectInstance(
