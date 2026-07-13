@@ -1,18 +1,14 @@
-package net.ps.weaponinfusion.sound;
+package net.ps.weaponinfusion.sound
 
-import net.blay09.mods.balm.core.BalmRegistrar;
-import net.minecraft.core.Holder;
-import net.minecraft.sounds.SoundEvent;
-import org.jspecify.annotations.NonNull;
+import net.blay09.mods.balm.core.BalmRegistrar
+import net.minecraft.core.Holder
+import net.minecraft.sounds.SoundEvent
 
-public class ModSoundEvents {
-    private ModSoundEvents() {
-        /* This utility class should not be instantiated */
-    }
+object ModSoundEvents {
+    lateinit var sandingShort: Holder<SoundEvent>
 
-    public static Holder<SoundEvent> sandingShort;
-
-    public static void initialize(BalmRegistrar.@NonNull Scoped<SoundEvent> soundEvents) {
-        sandingShort = soundEvents.register("sanding_short", SoundEvent::createVariableRangeEvent);
+    fun initialize(soundEvents: BalmRegistrar.Scoped<SoundEvent>) {
+        sandingShort = soundEvents.register("sanding_short",
+            SoundEvent::createVariableRangeEvent)
     }
 }

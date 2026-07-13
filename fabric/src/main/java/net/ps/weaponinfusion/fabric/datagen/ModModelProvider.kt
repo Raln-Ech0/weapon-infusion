@@ -1,29 +1,21 @@
-package net.ps.weaponinfusion.fabric.datagen;
+package net.ps.weaponinfusion.fabric.datagen
 
-import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-import net.minecraft.client.data.models.BlockModelGenerators;
-import net.minecraft.client.data.models.ItemModelGenerators;
-import net.minecraft.client.data.models.model.ItemModelUtils;
-import net.minecraft.resources.Identifier;
-import net.ps.weaponinfusion.item.ModItems;
-import org.jspecify.annotations.NonNull;
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
+import net.minecraft.client.data.models.BlockModelGenerators
+import net.minecraft.client.data.models.ItemModelGenerators
+import net.minecraft.client.data.models.model.ItemModelUtils
+import net.minecraft.resources.Identifier
+import net.ps.weaponinfusion.item.ModItems
 
-public class ModModelProvider extends FabricModelProvider {
-    public ModModelProvider(FabricPackOutput output) {
-        super(output);
-    }
+class ModModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
+    override fun generateBlockStateModels(blockModelGenerators: BlockModelGenerators) {}
 
-    @Override
-    @SuppressWarnings("java:S1186")
-    public void generateBlockStateModels(@NonNull BlockModelGenerators blockModelGenerators) {}
-
-    @Override
-    public void generateItemModels(ItemModelGenerators itemModelGenerator) {
-        itemModelGenerator.generatePotion(ModItems.tincture.asItem());
+    override fun generateItemModels(itemModelGenerator: ItemModelGenerators) {
+        itemModelGenerator.generatePotion(ModItems.tincture.asItem())
         itemModelGenerator.itemModelOutput.accept(
-                ModItems.sandPaper.asItem(),
-                ItemModelUtils.plainModel(Identifier.withDefaultNamespace("item/paper"))
-        );
+            ModItems.sandPaper.asItem(),
+            ItemModelUtils.plainModel(Identifier.withDefaultNamespace("item/paper"))
+        )
     }
 }

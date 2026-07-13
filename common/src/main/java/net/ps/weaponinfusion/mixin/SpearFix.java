@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class SpearFix {
     @Inject(method = "stabAttack", at = @At("HEAD"))
     private void onStabAttack(EquipmentSlot slot, Entity target, float baseDamage, boolean dealsDamage, boolean dealsKnockback, boolean dismounts, CallbackInfoReturnable<Boolean> cir) {
-        if (!((Player) (Object) this).isUsingItem()) ModEvents.onAttack((Player) (Object) this, target);
+        Player player = (Player) (Object) this;
+        if (!player.isUsingItem()) ModEvents.INSTANCE.onAttack(player, target);
     }
 }

@@ -29,7 +29,7 @@ public abstract class ChargesAddMixin {
                             weapon.is(ItemTags.MACE_ENCHANTABLE) ||
                             weapon.is(ItemTags.TRIDENT_ENCHANTABLE))
             ) {
-                builder.accept(Component.translatable("item.charges", Objects.requireNonNull(weapon.get(ModDataComponents.charges.value()))));
+                builder.accept(Component.translatable("item.charges", Objects.requireNonNull(weapon.get(ModDataComponents.INSTANCE.getCharges().value()))));
             }
 
 

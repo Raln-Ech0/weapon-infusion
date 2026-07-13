@@ -1,6 +1,7 @@
 import net.darkhax.curseforgegradle.TaskPublishCurseForge
 
 plugins {
+    id 'org.jetbrains.kotlin.jvm'
     id 'multiloader-loader'
     alias libs.plugins.modDevGradle
     alias libs.plugins.curseForgeGradle

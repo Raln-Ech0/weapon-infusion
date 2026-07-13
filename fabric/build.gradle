@@ -5,12 +5,14 @@ plugins {
     alias libs.plugins.fabricLoom
     alias libs.plugins.curseForgeGradle
     alias libs.plugins.modrinthMinotaur
+    id 'org.jetbrains.kotlin.jvm'
 }
 
 dependencies {
     minecraft libs.minecraft
     implementation libs.fabricLoader
     implementation libs.fabricApi
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 apply from: rootProject.file('repositories.gradle')
@@ -90,4 +92,10 @@ modrinth {
         required.project "fabric-api"
         required.project "balm"
     }
+}
+repositories {
+    mavenCentral()
+}
+kotlin {
+    jvmToolchain(25)
 }
